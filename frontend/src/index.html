@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2018 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- <script type="module" src="milsymbol-2.0.0/src/milsymbol.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <meta charset="utf-8" />
+    <base target="_blank" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Vilive</title>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <!-- live session ------------------------>
+    <div class="container" id="live-session">
+      <Canvas width="500" height="500">
+        <CameraControls />
+        <spotLight position={[0, 0, 10]} />
+        {vrm && <primitive object={vrm.scene} />}
+        <gridHelper />
+        <axesHelper />
+      </Canvas>
+      <img id="background" src="image/default_bg.png" alt="image" />
+      <video id="gum-local" autoplay playsinline muted></video>
+    </div>
+  
+
+    <!-- bottom tab--------------------------------->
+    <nav class="navbar navbar-expand-md">
+      <img
+        src="../src/image/Logo.png"
+        class="img-fluid"
+        alt="Responsive image"
+      />
+      <button onClick={changeExpression}></button>
+      <button onClick={startCamera}></button>
+      <button onClick={stopCamera}></button>
+
+      <button
+        class="navbar-toggler navbar-dark"
+        type="button"
+        data-toggle="collapse"
+        data-target="#main-navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main-navigation">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <div class="btn-group dropup">
+              <a
+                class="btn btn-link"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="false"
+                aria-expanded="false"
+              >
+                <img src="../src/image/add.png" id="addDelete" />
+                <br />Add
+              </a>
+              <div class="dropdown-menu">
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  onclick="return false;"
+                  id="startButton"
+                >
+                  <img
+                    src="../src/image/tv.png"
+                    class="icon"
+                    alt="Responsive image"
+                  />
+                  Screen sharing
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" id="input">
+                  <label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      id="input"
+                      onChange="readURL(this);"
+                    />
+                    <img
+                      src="../src/image/photo.png"
+                      class="icon"
+                      alt="Responsive image"
+                    />
+                    Add Background
+                  </label>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" id="root">
+                <input type="file" accept=".vrm" onChange={handleFileChange} />
+                  
+                  <img
+                    src="../src/image/modelling.png"
+                    class="icon"
+                    alt="Responsive image"
+                  />
+                  Add model
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="btn btn-link"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="false"
+              aria-expanded="false"
+            >
+              <img src="../src/image/delete.png" id="addDelete" />
+              <br />Delete
+            </a>
+          </li>
+
+          <li>
+            <div class="btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active" id="startLive" disabled>
+                <input type="checkbox" checked autocomplete="off" /> Start to
+                live !
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- js ------------------------------------->
+
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/upload.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/EBML.js"></script>
+
+    <script src="../src/js/lib/ga.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
